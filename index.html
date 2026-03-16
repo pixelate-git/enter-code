@@ -43,17 +43,8 @@ border-radius:50%;
 box-shadow: inset 0 0 5px black;
 }
 
-.vault::before{
-top:10px;
-left:10px;
-}
-
-.vault::after{
-bottom:10px;
-right:10px;
-}
-
-/* Title */
+.vault::before{ top:10px; left:10px; }
+.vault::after{ bottom:10px; right:10px; }
 
 h1{
 text-align:center;
@@ -93,7 +84,34 @@ button:hover{
 background:linear-gradient(#666,#222);
 }
 
-/* Hidden message */
+/* Terminal section */
+
+#terminalArea{
+display:none;
+margin-top:20px;
+background:#000;
+border:2px solid #333;
+padding:15px;
+font-family:monospace;
+color:#00ff88;
+box-shadow: inset 0 0 15px rgba(0,255,120,0.3);
+}
+
+#terminalButton{
+background:black;
+color:#00ff88;
+border:1px solid #00ff88;
+font-family:monospace;
+margin-top:10px;
+padding:10px;
+cursor:pointer;
+}
+
+#terminalButton:hover{
+background:#001a00;
+}
+
+/* Messages */
 
 #secret{
 margin-top:20px;
@@ -122,41 +140,7 @@ display:none;
 
 <h1>VAULT ACCESS</h1>
 
-<select id="c1">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
-
-<select id="c2">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
-
-<select id="c3">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
-
-<select id="c4">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
-
-<select id="c5">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
-
-<select id="c6">
-<option>Red</option>
-<option>Blue</option>
-<option>Yellow</option>
-</select>
+<select id="c1"><option>Red</option><option>Blue</option><option>Yellow</option></select> <select id="c2"><option>Red</option><option>Blue</option><option>Yellow</option></select> <select id="c3"><option>Red</option><option>Blue</option><option>Yellow</option></select> <select id="c4"><option>Red</option><option>Blue</option><option>Yellow</option></select> <select id="c5"><option>Red</option><option>Blue</option><option>Yellow</option></select> <select id="c6"><option>Red</option><option>Blue</option><option>Yellow</option></select>
 
 <input id="number" type="text" maxlength="4" placeholder="Enter 4 digit code">
 
@@ -166,9 +150,15 @@ display:none;
 
 <div id="secret">
 ACCESS GRANTED.<br><br>
-Vault contents unlocked.<br>
-Incomplete.
-Come back later.
+Vault contents unlocked.
+</div>
+
+<div id="terminalArea">
+&gt; SECURE TERMINAL UNLOCKED<br>
+&gt; External system access available<br><br>
+
+<button id="terminalButton" onclick="openTerminalSite()">OPEN TERMINAL</button>
+
 </div>
 
 </div>
@@ -188,8 +178,6 @@ document.getElementById("c6").value
 
 let number = document.getElementById("number").value;
 
-/* Correct combination */
-
 let correctColors = ["Red","Blue","Yellow","Blue","Red","Yellow"];
 let correctNumber = "1408";
 
@@ -207,11 +195,21 @@ correct = false;
 
 if(correct){
 document.getElementById("secret").style.display = "block";
+document.getElementById("terminalArea").style.display = "block";
 document.getElementById("error").style.display = "none";
 }else{
 document.getElementById("error").style.display = "block";
 document.getElementById("secret").style.display = "none";
+document.getElementById("terminalArea").style.display = "none";
 }
+
+}
+
+function openTerminalSite(){
+
+/* CHANGE THIS LINK */
+
+window.location.href = "YouFoundIt.html";
 
 }
 
